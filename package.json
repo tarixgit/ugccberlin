@@ -24,9 +24,9 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": " start",
+    "build": " build",
+    "test": " test --env=jsdom",
+    "eject": " eject"
   }
 }
