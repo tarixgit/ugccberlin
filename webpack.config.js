@@ -16,6 +16,25 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, "src/js"),
+                    path.resolve(__dirname, "src/tests"),
+                    path.resolve(__dirname, "src/index.js")
+                ],
+            },
+            {
+                test: /\.jsx$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, "src/js"),
+                    path.resolve(__dirname, "src/tests")
+                ],
+            },
+            {
                 test: /\.svg$/,
                 loader: 'svg-inline-loader'
             },
@@ -27,21 +46,24 @@ module.exports = {
                 ],
             },
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: [
-                    path.resolve(__dirname, "src/js"),
-                    path.resolve(__dirname, "src/tests"),
-                    path.resolve(__dirname, "src/index.js")
-                ],
+                test: /\.jpg$/,
+                loader: "file-loader"
             },
             {
-                test: /\.jsx$/,
-                loader: 'babel-loader',
-                include: [
-                    path.resolve(__dirname, "src/js"),
-                    path.resolve(__dirname, "src/tests")
-                ],
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
             }
         ]
     },

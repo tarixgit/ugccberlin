@@ -7,34 +7,58 @@ const routes = require('./server/routes/routes.js');
 // Create hapi server instance
 const server = new Hapi.Server({
     port: 3000,
-    routes: {
+    /*routes: {
         files: {
             relativeTo: Path.join(__dirname, 'public')
         }
-    }
+    }*/
 });
 
 const provision = async () => {
 
-await server.register(Inert);
+    await server.register(Inert);
 
-server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-        directory: {
-            path: '.',
-            redirectToSlash: true,
-            index: true,
+
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+                //path: ['app/static'],
+                path: '.',
+                redirectToSlash: true,
+                listing: true,
+                showHidden: true,
+                //index: true,
+                index: ['index.html']
+            }
         }
-    }
-});
+    });
 
-server.route(routes);
+    server.route(routes);
 
-await server.start();
+    server.route({
+        method: '*',
+        path:  '/{p*}',
+        handler: function (request, reply) {
+            console.log('WORD1');
+            return reply.file('index.html');
+        }
+    });
+    server.ext('onPreResponse', function (request, reply) {
 
-console.log('Server running at:', server.info.uri);
+        if (request.response.isBoom) {
+            // Inspect the response here, perhaps see if it's a 404?
+            //return reply.redirect('/');
+            return reply.file('index.html');
+        }
+
+        return reply.continue
+    });
+
+    await server.start();
+
+    console.log('Server running at:', server.info.uri);
 };
 
 provision();

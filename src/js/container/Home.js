@@ -7,7 +7,7 @@ class Home extends React.Component {
             <div>
                 <h1>Новини</h1>
                 <ul>
-                    test
+                    test asd
                 </ul>
                 test
             </div>
