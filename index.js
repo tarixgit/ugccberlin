@@ -3,7 +3,9 @@
 const Path = require('path');
 const Hapi = require('hapi');
 const Inert = require('inert');
+const Sequelize = require('sequelize');
 const routes = require('./server/routes/routes.js');
+
 // Create hapi server instance
 const server = new Hapi.Server({
     port: 3000,
@@ -106,4 +108,28 @@ server.start((err) => {
         throw err;
     }
     console.log(`Server running at: ${server.info.uri}`);
-});*/
+});
+
+
+
+
+models.sequelize.sync(///{force: true}////).then(function(){
+  server.register({
+    register: require('good'),
+    options: options
+  }, (err) =>{
+
+    if(err) {
+      console.error(err);
+    }
+    else {
+      server.start(() =>{
+        console.info('Server started at ' + server.info.uri);
+      });
+    }
+  });
+});
+
+
+
+*/
