@@ -12,8 +12,8 @@ class Routes extends Component {
                 <div>
                     <Route path="/" component={NavBar}/>
                     <Route path="/calendar" component={App}/>
-                    <Route path="/info" component={Home}/>
-                    <Route path="/news" component={App}/>
+                    <Route path="/news" component={Home}/>
+                    <Route path="/test" component={App}/>
                 </div>
             </div>);
     }

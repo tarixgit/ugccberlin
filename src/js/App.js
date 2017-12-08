@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from '../icons/logo.svg';
 import '../css/App.css';
-import NavBar from './container/NaBar'
 
 
 class App extends Component {
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
@@ -16,6 +16,7 @@ class App extends Component {
           To get started, type and save to reload.
         </p>
       </div>
+
     );
   }
 }
