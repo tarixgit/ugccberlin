@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import axios from 'axios';
 import '../../css/Home.css';
 
 class Home extends React.Component {

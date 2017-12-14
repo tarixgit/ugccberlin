@@ -1,17 +1,12 @@
+const NewsController = require('../controllers/NewsController');
+
 module.exports = [
     {
-        path: '/tarix',
+        path: '/getnews',
         method: 'GET',
-        handler: function (request, h) {
-            //response = h.entity;
-             /*
-             const response = h.entity({ etag: 'abc' });
-            if (response) {
-                response.header('X', 'y');
-                return response;
-            }
-            */
-            return { name: 'John' };
+        config: {
+            handler: NewsController.all,
         }
+
     }
 ];

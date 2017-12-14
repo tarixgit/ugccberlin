@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import App from '../App';
-import Home from '../container/Home.js'
+import Home from '../container/News.js'
 import NavBar from '../container/NaBar'
 
 

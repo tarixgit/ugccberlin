@@ -1,7 +1,5 @@
 {
   "name": "ugccberlin",
-  "description": "Sample application for a Hapi API",
-  "main": "index.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +18,7 @@
     "react-scripts": "1.0.17",
     "sequelize": "^4.22.6",
     "sqlite3": "^3.1.13",
-    "svg-inline-loader": "^0.8.0"
+    "svg-inline-loader": "^0.8.0",
     "boom": "^4.2.0",
     "dotenv": "^4.0.0",
     "hapi-auth-jwt2": "^7.2.4",
@@ -29,7 +27,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
     "build": " build",
     "test": " test --env=jsdom",
     "eject": " eject"
