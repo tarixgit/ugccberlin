@@ -1,0 +1,36 @@
+h1 {
+    font-size: 2em;
+    margin: .67em 0;
+}
+
+
+.root {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.maincontainer {
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1000px;
+}
+
+.news {
+    padding: 0;
+}
+
+.newsItem {
+    list-style-type: none;
+    padding-bottom: 6px;
+}
+
+.newsTitle {
+    font-size: 1.125em;
+}
+
+.newsTitle,
+.newsDesc {
+    display: block;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import App from '../App';
-import Home from '../container/Home.js'
+import Home from '../container/News.js'
 import NavBar from '../container/NaBar'
 
 
@@ -12,8 +12,8 @@ class Routes extends Component {
                 <div>
                     <Route path="/" component={NavBar}/>
                     <Route path="/calendar" component={App}/>
-                    <Route path="/info" component={Home}/>
-                    <Route path="/news" component={App}/>
+                    <Route path="/news" component={Home}/>
+                    <Route path="/test" component={App}/>
                 </div>
             </div>);
     }

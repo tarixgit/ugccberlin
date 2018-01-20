@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
+
 module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
@@ -21,14 +22,39 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
                     { loader: 'style-loader' },
                     {loader: 'css-loader', },
                 ],
             },
             {
+                test: /\.jpg$/,
+                loader: "file-loader"
+            },
+            {
+                test: /\.png$/,
+                loader: "file-loader"
+            },            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                exclude: /node_modules/,
                 include: [
                     path.resolve(__dirname, "src/js"),
                     path.resolve(__dirname, "src/tests"),
@@ -38,11 +64,12 @@ module.exports = {
             {
                 test: /\.jsx$/,
                 loader: 'babel-loader',
+                exclude: /node_modules/,
                 include: [
                     path.resolve(__dirname, "src/js"),
                     path.resolve(__dirname, "src/tests")
                 ],
-            }
+            },
         ]
     },
     devtool: 'source-map'

@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './js/App';
 import Routes from './js/config/router';
-//import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import { Router  } from 'react-router-dom'
+import createBrowaseHistory from 'history/createBrowserHistory'
 
-const history = createBrowserHistory();
+///require('./styles/index.scss');
 
+const history = createBrowaseHistory()
 ReactDOM.render(
-    <BrowserRouter history={history}>
+    <Router  history={history}>
         <Routes />
-    </BrowserRouter>, document.getElementById('app'));
-//registerServiceWorker();
+    </Router >, document.getElementById('app'));

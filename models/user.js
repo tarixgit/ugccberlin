@@ -1,11 +1,9 @@
 const sequelize = require('sequelize');
 
 "use strict";
-
 module.exports = function(sequelize, DataTypes) {
-    var Tarix = sequelize.define("Tarix", {
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING
+    var User = sequelize.define("User", {
+        username: DataTypes.STRING
     }, {
         classMethods: {
             associate: function(models) {
@@ -14,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Tarix;
+    return User;
 };
