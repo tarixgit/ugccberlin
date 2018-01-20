@@ -3,6 +3,7 @@ import logo from '../icons/logo.svg';
 import '../css/App.css';
 
 class App extends Component {
+    //TODO: not used anymore - to remove
   render() {
     return (
       <div className="App">
