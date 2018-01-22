@@ -44,6 +44,7 @@ const provision = async () => {
 
     server.route(routes);
 
+    //TODO: check why you need this
     server.route({
         method: '*',
         path:  '/{p*}',
@@ -57,99 +58,18 @@ const provision = async () => {
     });
 
     server.ext('onPreResponse', function (request, reply) {
-
         if (request.response.isBoom) {
             // Inspect the response here, perhaps see if it's a 404?
             //return reply.redirect('/');
             return reply.file('index.html');
         }
-
         return reply.continue
     });
 
-
-
-
-
-
-    //await server.start();
-
-    models.sequelize.sync().then(function() {
-        server.start(function() {
-            console.log('Running on 3000');
-        });
-    });
+    await models.sequelize.sync();
+    await server.start();
 
     console.log('Server running at:', server.info.uri);
 };
 
 provision();
-
-/*
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply.file('./public/index.html');
-    }
-});
-
-server.route({
-    method: 'GET',
-    path: '/{name}',
-    handler: function (request, reply) {
-        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
-    }
-});
-
-server.register({
-    register: require('inert')
-});
-    server.path(__dirname + '/public');
-
-    server.route({
-        method: 'GET',
-        path: '/index',
-        handler: {
-            file: './index.html'
-        }
-    });
-
-
-    server.start(function(err) {
-        console.log('Server started at: ' + server.info.uri)
-    });
-
-*/
-/*
-server.start((err) => {
-
-    if (err) {
-        throw err;
-    }
-    console.log(`Server running at: ${server.info.uri}`);
-});
-
-
-
-
-models.sequelize.sync(///{force: true}////).then(function(){
-  server.register({
-    register: require('good'),
-    options: options
-  }, (err) =>{
-
-    if(err) {
-      console.error(err);
-    }
-    else {
-      server.start(() =>{
-        console.info('Server started at ' + server.info.uri);
-      });
-    }
-  });
-});
-
-
-
-*/

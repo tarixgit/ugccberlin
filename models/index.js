@@ -1,12 +1,12 @@
 "use strict";
 
-var fs        = require("fs");
-var path      = require("path");
-var Sequelize = require("sequelize");
-var env       = process.env.NODE_ENV || "development";
-var config    = require(__dirname + '/../config/config.json')[env];
-var sequelize = new Sequelize('ugcc', 'root', '123321',  {  dialect: 'mysql' });
-var db        = {};
+let fs        = require("fs");
+let path      = require("path");
+let Sequelize = require("sequelize");
+let env       = process.env.NODE_ENV || "development";
+let config    = require(__dirname + '/../config/config.json')[env];
+let sequelize = new Sequelize('ugccberlin', 'root', '123321',  {  dialect: 'mysql' });
+let db        = {};
 
 fs
     .readdirSync(__dirname)
@@ -14,7 +14,7 @@ fs
         return (file.indexOf(".") !== 0) && (file !== "index.js");
     })
     .forEach(function(file) {
-        var model = sequelize["import"](path.join(__dirname, file));
+        let model = sequelize["import"](path.join(__dirname, file));
         db[model.name] = model;
     });
 
