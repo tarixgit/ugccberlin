@@ -9,23 +9,21 @@ class NavBar extends React.Component {
     render() {
         return (
             <div role="navigation">
-
-
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                     <span className='logo'>
                         <a href="/">
-                            <img src="./public/icons/icon.png" height="33" width="33" alt="text here"/></a>
+                            <img src="./icons/icon.png" height="33" width="33"/></a>
                     </span>
                         <Navbar.Brand>
-                            <Link to="/">УГКЦ Берлін</Link >
+                            <Link to="/news">УГКЦ св. Миколая у Берлін</Link >
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#"><Link  to="/news">Новини</Link></NavItem>
-                            <NavItem eventKey={2} href="/calendar"><Link to="/calendar">Богослужіння</Link></NavItem>
+                            <NavItem eventKey={2} href="/calender"><Link to="/calender">Календар</Link></NavItem>
                             <NavItem eventKey={3} href="#">Інфо</NavItem>
                             <NavItem eventKey={4} href="#">Контакти</NavItem>
                         </Nav>

@@ -3,9 +3,9 @@ import axios from 'axios'
 
 class Home extends React.Component {
     async componentDidMount() {
-        const result = await axios.get('/getNews')
+        const result = await axios.get('/getnews');
         this.setState({
-            news: answer
+            news: result.data
         });
     }
     render() {

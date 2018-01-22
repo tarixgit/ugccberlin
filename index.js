@@ -10,11 +10,11 @@ const routes = require('./server/routes/routes.js');
 // Create hapi server instance
 const server = new Hapi.Server({
     port: 3000,
-    /*routes: {
+    routes: {
         files: {
             relativeTo: Path.join(__dirname, 'public')
         }
-    }*/
+    }
 });
 
 const provision = async () => {

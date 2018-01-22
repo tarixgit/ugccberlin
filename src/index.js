@@ -8,7 +8,7 @@ import createBrowaseHistory from 'history/createBrowserHistory'
 
 ///require('./styles/index.scss');
 
-const history = createBrowaseHistory()
+const history = createBrowaseHistory();
 ReactDOM.render(
     <Router  history={history}>
         <Routes />

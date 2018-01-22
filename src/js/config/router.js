@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import App from '../App';
-import Home from '../container/News.js'
+import Home from '../container/Home.js'
 import NavBar from '../container/NaBar'
-
+import Calender from '../container/Calender'
+import News from '../container/News'
 
 class Routes extends Component {
     render() {
         return (
             <div>
                 <div>
-                    <Route path="/" component={NavBar}/>
-                    <Route path="/calendar" component={App}/>
-                    <Route path="/news" component={Home}/>
-                    <Route path="/test" component={App}/>
+                    <NavBar/>
+                    <Route exact path="/" component={News}/>
+                    <Route path="/calender" component={Calender}/>
+                    <Route path="/news" component={News}/>
+                    <Route path="/test" component={Home}/>
                 </div>
             </div>);
     }
