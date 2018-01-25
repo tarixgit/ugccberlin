@@ -8,7 +8,7 @@ let config    = require(__dirname + '/../config/config.json')[env];
 let sequelize = new Sequelize(
     'ugccberlin',
     'root',
-    '123321',
+    '651209',
     {
         host: 'localhost',
         operatorsAliases: Sequelize.Op,
