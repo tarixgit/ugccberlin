@@ -11,3 +11,5 @@ yarn-debug.log*
 yarn-error.log*
 
 !/public/icons/
+!/public/index.html
+!/public/favicon.png
