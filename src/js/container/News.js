@@ -47,7 +47,8 @@ class News extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <button onClick={this.authorize}>Log in</button>
+                {//<button onClick={this.authorize}>Log in</button>
+                     }
             </div>
         );
     }
