@@ -16,7 +16,7 @@ class NavBar extends React.Component {
                             <img src="./icons/icon.png" height="33" width="33"/></a>
                     </span>
                         <Navbar.Brand>
-                            <Link to="/news">УГКЦ св. Миколая у Берлін</Link >
+                            <Link to="/news">УГКЦ св. Миколая у Берліні</Link >
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
