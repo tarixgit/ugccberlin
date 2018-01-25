@@ -5,7 +5,22 @@ let path      = require("path");
 let Sequelize = require("sequelize");
 let env       = process.env.NODE_ENV || "development";
 let config    = require(__dirname + '/../config/config.json')[env];
-let sequelize = new Sequelize('ugccberlin', 'root', '123321',  {  dialect: 'mysql' });
+let sequelize = new Sequelize(
+    'ugccberlin',
+    'root',
+    '123321',
+    {
+        host: 'localhost',
+        operatorsAliases: Sequelize.Op,
+        dialect: 'mysql',
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        },
+    });
+
 let db        = {};
 
 fs

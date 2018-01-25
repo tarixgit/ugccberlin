@@ -3,7 +3,10 @@ const sequelize = require('sequelize');
 "use strict";
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        username: DataTypes.STRING
+        username: DataTypes.STRING,
+        email: DataTypes.STRING,
+        admin: DataTypes.BOOLEAN,
+        userId: DataTypes.STRING
     }, {
         classMethods: {
             associate: function(models) {

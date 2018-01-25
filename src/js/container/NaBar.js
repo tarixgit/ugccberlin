@@ -25,7 +25,7 @@ class NavBar extends React.Component {
                             <NavItem eventKey={1} href="#"><Link  to="/news">Новини</Link></NavItem>
                             <NavItem eventKey={2} href="/calender"><Link to="/calender">Календар</Link></NavItem>
                             <NavItem eventKey={3} href="#">Інфо</NavItem>
-                            <NavItem eventKey={4} href="#">Контакти</NavItem>
+                            <NavItem eventKey={4} href="/contact"><Link to="/contact">Контакти</Link></NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

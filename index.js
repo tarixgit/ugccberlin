@@ -3,9 +3,12 @@
 const Path = require('path');
 const Hapi = require('hapi');
 const Inert = require('inert');
-const Sequelize = require('sequelize');
+const jwt = require('hapi-auth-jwt2');
+const jwksRsa = require('jwks-rsa');
+//const Sequelize = require('sequelize');
 const models = require('./models');
 const routes = require('./server/routes/routes.js');
+const internals = {};
 
 // Create hapi server instance
 const server = new Hapi.Server({
@@ -17,10 +20,54 @@ const server = new Hapi.Server({
     }
 });
 
+
 const provision = async () => {
+    const validateUser = (decoded, request, callback) => {
+        console.log(" - - - - - - - decoded token:");
+        console.log(decoded);
+        console.log(" - - - - - - - request info:");
+        console.log(request.info);
+        console.log(" - - - - - - - user agent:");
+        console.log(request.headers['user-agent']);
+        if (decoded && decoded.sub) {
+            return callback(null, true);
+        }
+        /*
+         //here we can lookup in db  if we such of user
+        const user = users[username];
+        if (!user) {
+            return callback(null, false);
+        }
+
+        Bcrypt.compare(password, user.password, (err, isValid) => {
+            callback(err, isValid, { id: user.id, name: user.name });
+        });
+        */
+        return callback(null, false);
+    };
 
     await server.register(Inert);
+try {
+    await server.register(jwt);
+    await server.auth.strategy('jwt', 'jwt', {
+        complete: true,
+        // verify the access token against the
+        // remote Auth0 JWKS
+        key: jwksRsa.hapiJwt2Key({
+            cache: true,
+            rateLimit: true,
+            jwksRequestsPerMinute: 5,
+            jwksUri: `https://tarix.eu.auth0.com/.well-known/jwks.json`
+        }),
+        verifyOptions: {
+            audience: '{shWgv4HjTOmDicgGsHIyUylot8zXWs1u}',
+            issuer: `https://tarix.eu.auth0.com/`,
+            algorithms: 'RS256'
+        },
+        validate: validateUser
+    });
 
+    server.auth.default('jwt');
 
     server.route({
         method: 'GET',
@@ -47,7 +94,7 @@ const provision = async () => {
     //TODO: check why you need this
     server.route({
         method: '*',
-        path:  '/{p*}',
+        path: '/{p*}',
         config: {
             auth: false,
             handler: function (request, reply) {
@@ -70,6 +117,9 @@ const provision = async () => {
     await server.start();
 
     console.log('Server running at:', server.info.uri);
+} catch(err) {
+    console.log(err);
+}
 };
 
 provision();

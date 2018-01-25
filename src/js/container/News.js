@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import axios from 'axios';
 import '../../css/Home.css';
+import {login, logout, isLoggedIn } from '../../Auth/Auth.js';
+import { getAccessToken } from '../../Auth/Auth.js';
 
 class News extends React.Component {
     constructor(props) {
@@ -16,18 +18,16 @@ class News extends React.Component {
         });
     }
 
+    addNews() {
+        const url = `${BASE_URL}/api/jokes/celebrity`;
+        return axios.post(url, {headers: {Authorization: `Bearer ${getAccessToken()}`}}).then(response => response.data);
+    }
+    authorize() {
+        //const auth = new Auth();
+        login();
+    }
+
     render() {
-        /*const data = { news: [{
-                title: 'Die Seite ist in der Bearbeitung',
-                link: 'http://uachurch.de',
-                contentSnippet: 'Інтернет сторінка находиться на стадії розвитку' }, {
-                title: 'Служба Божа 15 січня відбудетьcя як завжди о 10:00',
-                link: 'http://uachurch.de',
-                contentSnippet: 'В цей день також Храм у нашій церкві у Магдебурзі' }, {
-                title: 'Молодь буде ходити із колядою 13.01, 14.01',
-                link: 'http://uachurch.de',
-                contentSnippet: 'Хто бажає, щоб до них зайшла коляда повідомте отця Сергія' }] };
-        */
         const news = this.state.news;
         if (!news) throw new Error('Failed to load the news feed.');
         return (
@@ -47,6 +47,7 @@ class News extends React.Component {
                         ))}
                     </ul>
                 </div>
+                <button onClick={this.authorize}>Log in</button>
             </div>
         );
     }
