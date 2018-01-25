@@ -12,6 +12,7 @@ const internals = {};
 
 // Create hapi server instance
 const server = new Hapi.Server({
+    host: '127.0.0.1',
     port: 3000,
     routes: {
         files: {
