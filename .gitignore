@@ -2,8 +2,8 @@
 
 /node_modules/
 
-/public/
-
+!/public
+/public/*
 /.idea/
 
 npm-debug.log*
