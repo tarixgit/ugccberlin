@@ -3,14 +3,15 @@ import auth0 from 'auth0-js';
 //import { browserHistory } from 'react-router';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
+const config = require('../../config/config.json');
 
 let auth = new auth0.WebAuth({
-        domain: 'tarix.eu.auth0.com',
-        clientID: '3BIE0anD0ODc8qUP08LdXX3Ocv72vNci',
-        redirectUri: 'http://localhost:3000/callback',
-        audience: 'https://tarix.eu.auth0.com/userinfo',
-        responseType: 'token id_token',
-        scope: 'openid'
+        domain: config.auth0config.domain,
+        clientID: config.auth0config.clientID,
+        redirectUri: config.auth0config.redirectUri,
+        audience: config.auth0config.audience,
+        responseType: config.auth0config.responseType,
+        scope: config.auth0config.scope
     });
 
 export function login() {

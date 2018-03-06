@@ -4,13 +4,14 @@ let fs        = require("fs");
 let path      = require("path");
 let Sequelize = require("sequelize");
 let env       = process.env.NODE_ENV || "development";
-let config    = require(__dirname + '/../config/config.json')[env];
+let config    = require('../config/config.json');
 let sequelize = new Sequelize(
-    'ugccberlin',
-    'root',
-    '651209',
+    config.db.dbname,
+    config.db.user,
+    config.db.pass,
     {
-        host: 'localhost',
+        host: config.db.host,
+        port: config.db.port,
         operatorsAliases: Sequelize.Op,
         dialect: 'mysql',
         pool: {

@@ -8,12 +8,15 @@ const jwksRsa = require('jwks-rsa');
 //const Sequelize = require('sequelize');
 const models = require('./models');
 const routes = require('./server/routes/routes.js');
+const config = require('./config/config.json');
 const internals = {};
+
+//let config    = require(__dirname + '/../config/config.json')[env];
 
 // Create hapi server instance
 const server = new Hapi.Server({
-    host: '127.0.0.1',
-    port: 3000,
+    host: config.host,
+    port: config.port,
     routes: {
         files: {
             relativeTo: Path.join(__dirname, 'public')
@@ -44,6 +47,8 @@ const provision = async () => {
             callback(err, isValid, { id: user.id, name: user.name });
         });
         */
+
+
         return callback(null, false);
     };
 

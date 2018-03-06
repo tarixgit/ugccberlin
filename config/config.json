@@ -1,0 +1,19 @@
+{
+    "host":"localhost",
+    "port":"3000",
+    "db": {
+        "host": "localhost",
+        "port": 3306,
+        "dbname": "ugccberlin",
+        "user": "root",
+        "pass": "123321"
+    },
+    "auth0config":{
+        "domain": "tarix.eu.auth0.com",
+        "clientID": "3BIE0anD0ODc8qUP08LdXX3Ocv72vNci",
+        "redirectUri": "http://localhost:3000/callback",
+        "audience": "https://tarix.eu.auth0.com/userinfo",
+        "responseType": "token id_token",
+        "scope": "openid"
+    }
+}
