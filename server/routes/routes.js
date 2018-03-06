@@ -5,7 +5,7 @@ module.exports = [
         path: '/getnews',
         method: 'GET',
         config: {
-            auth: false,
+            auth: 'jwt',
         },
         handler: NewsController.all,
     }

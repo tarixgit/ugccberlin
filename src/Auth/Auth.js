@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js';
+import axios from 'axios';
 //import decode from 'jwt-decode';
 //import { browserHistory } from 'react-router';
 const ID_TOKEN_KEY = 'id_token';
@@ -22,6 +23,10 @@ export function logout() {
     clearIdToken();
     clearAccessToken();
     browserHistory.push('/');
+}
+
+if (localStorage.getItem('id_token')) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token')
 }
 
 export function requireAuth(nextState, replace) {
@@ -62,6 +67,7 @@ export function setAccessToken() {
 export function setIdToken() {
     let idToken = getParameterByName('id_token');
     localStorage.setItem(ID_TOKEN_KEY, idToken);
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token')
 }
 
 export function isLoggedIn() {
