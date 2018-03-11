@@ -1,7 +1,6 @@
 import auth0 from 'auth0-js';
 import axios from 'axios';
-//import decode from 'jwt-decode';
-//import { browserHistory } from 'react-router';
+import decode from 'jwt-decode';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 const config = require('../../config/config.json');
@@ -22,7 +21,6 @@ export function login() {
 export function logout() {
     clearIdToken();
     clearAccessToken();
-    browserHistory.push('/');
 }
 
 if (localStorage.getItem('id_token')) {

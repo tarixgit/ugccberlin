@@ -2,15 +2,26 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 //import nav from './NavBar.css';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
-import {login} from "../../Auth/Auth";
+import {login, logout, isLoggedIn} from "../../Auth/Auth";
 
 
 class NavBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: isLoggedIn()
+        };
+        this.logout = this.logout.bind(this);
+    }
     authorize() {
-        //const auth = new Auth();
         login();
     }
-
+    logout() {
+        logout();
+        this.setState({
+            isLoggedIn: isLoggedIn()
+        });
+    }
 
     render() {
         return (
@@ -32,8 +43,8 @@ class NavBar extends React.Component {
                             <NavItem eventKey={2} href="/calender"><Link to="/calender">Календар</Link></NavItem>
                             <NavItem eventKey={3} href="#">Інфо</NavItem>
                             <NavItem eventKey={4} href="/contact"><Link to="/contact">Контакти</Link></NavItem>
-                            <NavItem eventKey={3} href="#"><button onClick={this.authorize}>Log in</button></NavItem>
-                            <NavItem eventKey={3} href="#">Logout</NavItem>
+                            {!this.state.isLoggedIn && <NavItem eventKey={5} href="#" onClick={this.authorize}>Login</NavItem>}
+                            {this.state.isLoggedIn && <NavItem eventKey={6} href="#" onClick={this.logout}>Logout</NavItem>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
