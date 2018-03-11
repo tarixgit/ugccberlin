@@ -2,9 +2,15 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 //import nav from './NavBar.css';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import {login} from "../../Auth/Auth";
 
 
 class NavBar extends React.Component {
+    authorize() {
+        //const auth = new Auth();
+        login();
+    }
+
 
     render() {
         return (
@@ -26,10 +32,13 @@ class NavBar extends React.Component {
                             <NavItem eventKey={2} href="/calender"><Link to="/calender">Календар</Link></NavItem>
                             <NavItem eventKey={3} href="#">Інфо</NavItem>
                             <NavItem eventKey={4} href="/contact"><Link to="/contact">Контакти</Link></NavItem>
+                            <NavItem eventKey={3} href="#"><button onClick={this.authorize}>Log in</button></NavItem>
+                            <NavItem eventKey={3} href="#">Logout</NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
+
 
 
         );

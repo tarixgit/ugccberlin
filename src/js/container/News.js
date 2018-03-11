@@ -26,7 +26,7 @@ class News extends React.Component {
         //const auth = new Auth();
         login();
     }
-
+    //titel text foto author
     render() {
         const news = this.state.news;
         if (!news) throw new Error('Failed to load the news feed.');
@@ -47,31 +47,9 @@ class News extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <button onClick={this.authorize}>Log in</button>
-
             </div>
         );
     }
-
-
-
-
-    /*render() {
-        const newsArray = this.state.news.map(item => {
-            return <div>
-                <div>{item.titel}</div>
-                <div>{item.text}</div>
-                <div>{item.foto}</div>
-                <div>{item.author}</div>
-            </div>
-        });
-        return (
-            <div>
-                <h1>Новини</h1>
-                {newsArray}
-            </div>
-        );
-    }*/
 }
 
 export default News;

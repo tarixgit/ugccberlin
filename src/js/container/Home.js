@@ -2,11 +2,23 @@ import React, { PropTypes } from 'react';
 import axios from 'axios'
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            news: []
+        };
+    }
     async componentDidMount() {
-        const result = await axios.get('/getnews');
-        this.setState({
-            news: result.data
-        });
+        try {
+            const result = await axios.get('/getnews');
+            if (result) {
+                this.setState({
+                    news: result.data
+                });
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
     render() {
         const newsArray = this.state.news.map(item => {

@@ -1,0 +1,1 @@
+CREATE SCHEMA `ugccberlin` DEFAULT CHARACTER SET cp1251 COLLATE cp1251_ukrainian_ci ;
