@@ -39,11 +39,13 @@ const provision = async () => {
         }
         /*
          //here we can lookup in db  if we such of user
+         //hapi-auth-jwt
         const user = users[username];
         if (!user) {
             return callback(null, false);
         }
-
+        call to db check push new credential
+        callback(err, isValid, { id: user.id, name: user.name });
         Bcrypt.compare(password, user.password, (err, isValid) => {
             callback(err, isValid, { id: user.id, name: user.name });
         });
@@ -61,11 +63,12 @@ const provision = async () => {
             complete: true,
             // verify the access token against the
             // remote Auth0 JWKS
-            key: 'eH8-jK_JrwrH_lJDq-gelIDuHN7RpmFqv2ewLI_33CjFCNrM4AXHtbNXq5qZ4o78',
+            key: new Buffer('eH8-jK_JrwrH_lJDq-gelIDuHN7RpmFqv2ewLI_33CjFCNrM4AXHtbNXq5qZ4o78'),
             verifyOptions: {
                 //audience: 'https://tarix.eu.auth0.com/api/v2/',
+                //audience: clientID
                 audience: 'https://tarix.eu.auth0.com/userinfo',
-                issuer: `https://tarix.eu.auth0.com/`,
+                //issuer: `https://tarix.eu.auth0.com/`,
                 algorithms: ['RS256']
             },
             validate: validateUser
