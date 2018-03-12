@@ -21,7 +21,17 @@ let auth = new auth0.WebAuth({
     scope: config.auth0config.scope
 
     });
-
+/*
+clientID: clientID,
+  domain: domain,
+  responseType: 'code token',
+  callbackURL:
+    window.location.protocol +
+    '//' +
+    window.location.host +
+    pathPrefix +
+    auth0Config.redirectPath
+*/
 export function login() {
     auth.authorize();
 }
