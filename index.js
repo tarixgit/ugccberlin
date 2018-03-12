@@ -12,7 +12,7 @@ const config = require('./config/config.json');
 const internals = {};
 
 //let config    = require(__dirname + '/../config/config.json')[env];
-
+//server.register(auth.js'), () => {route
 // Create hapi server instance
 const server = new Hapi.Server({
     host: config.host,
