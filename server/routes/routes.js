@@ -14,6 +14,10 @@ module.exports = [
         method: 'POST',
         config: {
             auth: 'jwt',
+            //auth: 
+//            {
+//    strategy: 'token'
+  //} 
         },
         handler: () => {
             return 'ok';
