@@ -61,20 +61,37 @@ const provision = async () => {
             complete: true,
             // verify the access token against the
             // remote Auth0 JWKS
-            key: jwksRsa.hapiJwt2Key({
-                cache: true,
-                rateLimit: true,
-                jwksRequestsPerMinute: 5,
-                jwksUri: `https://tarix.eu.auth0.com/.well-known/jwks.json`
-            }),
+            key: 'eH8-jK_JrwrH_lJDq-gelIDuHN7RpmFqv2ewLI_33CjFCNrM4AXHtbNXq5qZ4o78',
             verifyOptions: {
-                //audience: 'https://mrvar.auth0.com/api/v2/',
-                audience: '{shWgv4HjTOmDicgGsHIyUylot8zXWs1u}',
+                //audience: 'https://tarix.eu.auth0.com/api/v2/',
+                audience: 'https://tarix.eu.auth0.com/userinfo',
                 issuer: `https://tarix.eu.auth0.com/`,
-                algorithms: 'RS256'
+                algorithms: ['RS256']
             },
             validate: validateUser
         });
+
+        // await server.register(jwt, (err) => {
+        //     if (err) {
+        //         console.log(err);
+        //     }
+        //     server.auth.strategy('jwt', 'jwt', {
+        //         complete: true,
+        //         key: jwksRsa.hapiJwt2Key({
+        //             cache: true,
+        //             rateLimit: true,
+        //             jwksRequestsPerMinute: 5,
+        //             jwksUri: `https://tarix.eu.auth0.com/.well-known/jwks.json`
+        //         }),
+        //         verifyOptions: {
+        //             //audience: 'https://mrvar.auth0.com/api/v2/',
+        //             audience: '{shWgv4HjTOmDicgGsHIyUylot8zXWs1u}',
+        //             issuer: `https://tarix.eu.auth0.com/`,
+        //             algorithms: [ 'RS256' ]
+        //         }
+        //     });
+        //     server.auth.default('jwt');
+        // });
 
         await server.auth.default('jwt');
 
@@ -112,11 +129,15 @@ const provision = async () => {
                 }
             }
         });
-
+        await server.ext('onPreAuth', (request, reply) => {
+            return reply.continue
+        });
         await server.ext('onPreResponse', function (request, reply) {
             if (request.response.isBoom) {
                 // Inspect the response here, perhaps see if it's a 404?
                 //return reply.redirect('/');
+                console.log(request.response);
+                //return reply('error hap');
                 return reply.file('index.html');
             }
             return reply.continue

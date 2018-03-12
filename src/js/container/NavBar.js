@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 //import nav from './NavBar.css';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {login, logout, isLoggedIn} from "../../Auth/Auth";
+import { withRouter } from "react-router-dom";
+
 
 
 class NavBar extends React.Component {
@@ -18,6 +20,7 @@ class NavBar extends React.Component {
     }
     logout() {
         logout();
+        this.props.history.push('/');
         this.setState({
             isLoggedIn: isLoggedIn()
         });
@@ -55,4 +58,4 @@ class NavBar extends React.Component {
         );
     }
 }
-export default NavBar;
+export default withRouter(NavBar);

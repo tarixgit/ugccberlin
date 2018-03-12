@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import App from '../App';
 import Home from '../container/Home.js'
-import NavBar from '../container/NaBar'
+import NavBar from '../container/NavBar'
 import Calender from '../container/Calender'
 import News from '../container/News'
 import Contact from '../container/Contact'
@@ -15,7 +15,7 @@ class Routes extends Component {
         return (
             <div>
                 <div>
-                    <NavBar/>
+                    <NavBar history={history}/>
                     <Route exact path="/" component={News}/>
                     <Route path="/calender" component={Calender}/>
                     <Route path="/news" component={News}/>

@@ -8,5 +8,15 @@ module.exports = [
             auth: false,
         },
         handler: NewsController.all,
+    },
+    {
+        path: '/addnews',
+        method: 'POST',
+        config: {
+            auth: 'jwt',
+        },
+        handler: () => {
+            return 'ok';
+            },
     }
 ];
