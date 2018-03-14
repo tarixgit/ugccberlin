@@ -13,7 +13,7 @@ module.exports = [
         path: '/addnews',
         method: 'POST',
         config: {
-            auth: 'jwt',
+            auth: 'token',
             //auth: 
 //            {
 //    strategy: 'token'

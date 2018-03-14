@@ -27,7 +27,7 @@ const server = new Hapi.Server({
 
 const provision = async () => {
     //validation of user
-    const validateUser = (decoded, request, callback) => {
+    const validateUser = (decoded, request, h) => {
         console.log(" - - - - - - - decoded token:");
         console.log(decoded);
         console.log(" - - - - - - - request info:");
@@ -35,41 +35,24 @@ const provision = async () => {
         console.log(" - - - - - - - user agent:");
         console.log(request.headers['user-agent']);
         if (decoded && decoded.sub) {
-            return callback(null, true);
+            //{ isValid, credentials, response }
+            return { isValid: true };
         }
-        /*
-         //here we can lookup in db  if we such of user
-         //hapi-auth-jwt
-        const user = users[username];
-        if (!user) {
-            return callback(null, false);
-        }
-        call to db check push new credential
-        callback(err, isValid, { id: user.id, name: user.name });
-        Bcrypt.compare(password, user.password, (err, isValid) => {
-            callback(err, isValid, { id: user.id, name: user.name });
-        });
-        */
-
-
-        return callback(null, false);
+        return { isValid: false };
     };
 
     try {
         await server.register(Inert);
 
         await server.register(jwt);
-        await server.auth.strategy('jwt', 'jwt', {
+        await server.auth.strategy('token', 'jwt', {
             complete: true,
-            // verify the access token against the
-            // remote Auth0 JWKS
-            key: new Buffer('eH8-jK_JrwrH_lJDq-gelIDuHN7RpmFqv2ewLI_33CjFCNrM4AXHtbNXq5qZ4o78'),
+            key: 'I3P9l1m0jBNDmaE9CZ2yJO0B0ugZwg5J7ZsX3lL2VEHPdsLlBfR7sV6xFOaagncO',
             verifyOptions: {
-                //audience: 'https://tarix.eu.auth0.com/api/v2/',
-                //audience: clientID
-                audience: 'https://tarix.eu.auth0.com/userinfo',
-                //issuer: `https://tarix.eu.auth0.com/`,
-                algorithms: ['RS256']
+                audience: '8PVgyYFg79jOQoN4tDZlQWZma2MhRtE1',
+                issuer: 'https://tarix.eu.auth0.com/',
+                ignoreExpiration: true,
+                algorithms: ['HS256']
             },
             validate: validateUser
         });
@@ -96,7 +79,7 @@ const provision = async () => {
         //     server.auth.default('jwt');
         // });
 
-        await server.auth.default('jwt');
+        await server.auth.default('token');
 
         await server.route({
             method: 'GET',
@@ -126,9 +109,16 @@ const provision = async () => {
             path: '/{p*}',
             config: {
                 auth: false,
-                handler: function (request, reply) {
-                    console.log('WORD1');
-                    return reply.file('index.html');
+                handler: {
+                    directory: {
+                        //path: ['app/static'],
+                        path: '.',
+                        redirectToSlash: true,
+                        listing: true,
+                        showHidden: true,
+                        //index: true,
+                        index: ['index.html']
+                    }
                 }
             }
         });
@@ -140,7 +130,6 @@ const provision = async () => {
                 // Inspect the response here, perhaps see if it's a 404?
                 //return reply.redirect('/');
                 console.log(request.response);
-                //return reply('error hap');
                 return reply.file('index.html');
             }
             return reply.continue
